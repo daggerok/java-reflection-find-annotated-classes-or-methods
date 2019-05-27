@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@DisplayName("java classgraph library tests")
+@DisplayName("classgraph library tests")
 public class ClassGraphTest {
 
   @Test
