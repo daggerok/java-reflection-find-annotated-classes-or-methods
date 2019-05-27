@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DisplayName("java reflections library tests")
-public class ReflectionsLibraryTest {
+public class ReflectionsTest {
 
   private static Function<Throwable, RuntimeException> asRuntimeException =
       throwable -> Try.of(() -> new RuntimeException(throwable))
@@ -28,7 +28,8 @@ public class ReflectionsLibraryTest {
     val classes = new Reflections(getClass().getPackage().getName(),
                                   new SubTypesScanner(false)).getAllTypes()
                                                              .parallelStream()
-                                                             .map(s -> Try.of(() -> Class.forName(s)).getOrElseThrow(asRuntimeException))
+                                                             .map(s -> Try.of(() -> Class.forName(s))
+                                                                          .getOrElseThrow(asRuntimeException))
                                                              .collect(Collectors.toList());
     assertThat(classes).hasSizeGreaterThan(4);
     classes.stream().map(String::valueOf).forEach(log::info);

@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DisplayName("java classgraph library tests")
-public class ClassGraphLibraryTest {
+public class ClassGraphTest {
 
   @Test
   @DisplayName("should get classes recursively in given package")
@@ -21,7 +21,7 @@ public class ClassGraphLibraryTest {
     @Cleanup val scanResult = new ClassGraph().whitelistPackages(getClass().getPackage().getName())
                                               .enableClassInfo()
                                               .scan();
-    final List<Class<?>> classes = scanResult.getAllClasses().loadClasses();
+    List<Class<?>> classes = scanResult.getAllClasses().loadClasses();
     assertThat(classes).hasSizeGreaterThan(4);
     classes.stream().map(String::valueOf).forEach(log::info);
   }

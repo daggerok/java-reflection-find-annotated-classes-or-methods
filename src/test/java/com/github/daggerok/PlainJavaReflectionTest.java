@@ -52,7 +52,7 @@ class PlainJavaReflectionTest {
       String prefix = Arrays.stream(s.split(pathToPackageAndClass))
                             .findFirst()
                             .orElse("");
-                            //.orElseThrow(andThenJustDie);
+      //.orElseThrow(andThenJustDie);
       return s.replaceFirst(prefix, "")
               .replaceAll(File.separator, ".");
     };

@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DisplayName("java guava library tests")
-public class GuavaLibraryTest {
+public class GuavaTest {
 
   private static Function<Throwable, RuntimeException> asRuntimeException =
       throwable -> Try.of(() -> new RuntimeException(throwable))
@@ -24,12 +24,12 @@ public class GuavaLibraryTest {
   @Test
   @DisplayName("should get classes recursively in given package")
   public void test() {
-    final ClassPath classPath = Try.of(() -> ClassPath.from(getClass().getClassLoader()))
-                                   .getOrElseThrow(asRuntimeException);
-    final List<Class<?>> classes = classPath.getTopLevelClassesRecursive(getClass().getPackage().getName())
-                                            .parallelStream()
-                                            .map(ClassPath.ClassInfo::load)
-                                            .collect(Collectors.toList());
+    ClassPath classPath = Try.of(() -> ClassPath.from(getClass().getClassLoader()))
+                             .getOrElseThrow(asRuntimeException);
+    List<Class<?>> classes = classPath.getTopLevelClassesRecursive(getClass().getPackage().getName())
+                                      .parallelStream()
+                                      .map(ClassPath.ClassInfo::load)
+                                      .collect(Collectors.toList());
     assertThat(classes).hasSizeGreaterThan(4);
     classes.stream().map(String::valueOf).forEach(log::info);
   }
