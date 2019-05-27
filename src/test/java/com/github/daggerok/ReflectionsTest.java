@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@DisplayName("java reflections library tests")
+@DisplayName("reflections library tests")
 public class ReflectionsTest {
 
   private static Function<Throwable, RuntimeException> asRuntimeException =
