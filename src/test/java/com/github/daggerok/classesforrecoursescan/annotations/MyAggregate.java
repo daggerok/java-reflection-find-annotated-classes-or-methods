@@ -1,4 +1,4 @@
-package com.github.daggerok.plain.annotations;
+package com.github.daggerok.classesforrecoursescan.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
