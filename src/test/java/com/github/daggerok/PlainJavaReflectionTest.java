@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DisplayName("java plain reflection tests")
-class JavaReflectionPlainTest {
+class PlainJavaReflectionTest {
 
   private static final Function<Throwable, RuntimeException> asRuntimeException = throwable -> {
     log.error(throwable.getLocalizedMessage());
@@ -68,7 +68,8 @@ class JavaReflectionPlainTest {
   };
 
   @Test
-  void find_class_annotation() {
+  @DisplayName("should get classes recursively in given package")
+  void test() {
     Collection<Class<?>> classes = findAllPackageClasses.apply(getClass().getPackage().getName());
     assertThat(classes).hasSizeGreaterThan(4);
     classes.stream().map(String::valueOf).forEach(log::info);
