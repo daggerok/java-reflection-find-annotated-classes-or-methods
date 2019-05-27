@@ -28,13 +28,15 @@ public class SpringTest {
   @DisplayName("should get classes recursively in given package")
   public void test() {
     val provider = new ClassPathScanningCandidateComponentProvider(/* useDefaultFilters */ false);
-    String basePackage = getClass().getPackage().getName();
-    Pattern basePackagePattern = Pattern.compile(basePackage + ".*");
-    provider.addIncludeFilter(new RegexPatternTypeFilter(basePackagePattern));
+    Pattern recoursePattern = Pattern.compile(".*");
+    provider.addIncludeFilter(new RegexPatternTypeFilter(recoursePattern));
 
+    String basePackage = getClass().getPackage().getName();
     val classes = provider.findCandidateComponents(basePackage)
                           .parallelStream()
                           .map(BeanDefinition::getBeanClassName)
+                          .map(s -> Try.of(() -> Class.forName(s))
+                                       .getOrElseThrow(asRuntimeException))
                           .collect(Collectors.toList());
 
     assertThat(classes).hasSizeGreaterThan(4);
