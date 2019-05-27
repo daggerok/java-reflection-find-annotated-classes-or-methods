@@ -21,7 +21,7 @@ import java.util.stream.StreamSupport;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@DisplayName("java plain reflection tests")
+@DisplayName("plain java reflection tests")
 class PlainJavaReflectionTest {
 
   private static final Function<Throwable, RuntimeException> asRuntimeException = throwable -> {
