@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-@DisplayName("java guava library tests")
+@DisplayName("guava library tests")
 public class GuavaTest {
 
   private static Function<Throwable, RuntimeException> asRuntimeException =
